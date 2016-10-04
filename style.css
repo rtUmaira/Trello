@@ -1,0 +1,29 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+
+  background-color: #339CFF;
+}
+.overlay {
+    position:fixed;
+    display:none; 
+
+    /* color with alpha channel */
+    background-color: rgba(0, 0, 0, 0.7); /* 0.7 = 70% opacity */
+
+    /* stretch to screen edges */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.form-note {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 300px;
+  height: 300px;
+}
