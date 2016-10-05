@@ -1,19 +1,22 @@
-var s;
-var Trello = {
-		settings: {
-			divs: 0,
-			cards: 0,
-			board: {},
-			board_div: $("#board"),
-	    parent_div: $("#draggable"),
-			div_drop: $("#dropdown"),
-			input: $("#input"),
-	    text_area: $("#card")
-	  },
-		init: function() {
-			s = this.settings;
-		}
-};
+// var s;
+// var Trello = {
+// 		settings: {
+// 			divs: 0,
+// 			cards: 0,
+// 			board: {},
+// 			board_div: $("#board"),
+// 	    parent_div: $("#draggable"),
+// 			div_drop: $("#dropdown"),
+// 			input: $("#input"),
+// 	    text_area: $("#card")
+// 	  },
+// 		init: function() {
+// 			s = this.settings;
+// 		}
+// };
+	$(document).ready(function(){
+			localStorage.clear();
+	});
 
 	function toggle_board() {
 	    $(".overlay").toggle();
