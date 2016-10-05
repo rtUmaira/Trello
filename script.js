@@ -1,8 +1,91 @@
-	var Trello = {
+Trello = {
 			divs: 0,
 			cards: 0,
-			toggle_board: function() {
-					$(".overlay").toggle();
+			 init() {
+				 // console.log('initialised!');
+				//  this.toggle_board();
+
+				// overlay div
+				var div_o = document.createElement("div");
+				div_o.className = "overlay";
+				document.body.appendChild(div_o);
+
+				var div_f = document.createElement("div");
+				div_f.className = "form-note";
+				div_o.appendChild(div_f);
+
+				var label = document.createElement("label");
+				label.style.color = "white";
+				label.value = "Title";
+
+				var input_t = document.createElement("input");
+				input_t.type = "text";
+				input_t.id = "title";
+				input_t.className = "form-control";
+
+				var button = document.createElement("button");
+				button.className = "btn btn-success";
+				button.type = "submit";
+				button.innerHTML = "Submit";
+				var that = this;
+				button.onclick = function() {	that.create_board()};
+
+				var image = document.createElement("img");
+				image.src = "https://www.pledgesports.org/wp-content/themes/pledge_v2.3/img/close.png";
+				image.style.width = "50px";
+				image.style.height = "30px";
+				image.onclick = function() {  $(".overlay").toggle(); };
+
+				div_f.appendChild(label);
+				div_f.appendChild(input_t);
+				div_f.appendChild(button);
+				div_f.appendChild(image);
+
+				$(".overlay").toggle();
+
+				// board div
+				var div_b = document.createElement("div");
+				div_b.id = "board";
+				div_b.style.display = "none";
+
+				var h2 = document.createElement("h2");
+
+				var input_l = document.createElement("input");
+				input_l.type = "text";
+				input_l.id = "list";
+				input_l.className = "form-control";
+				input_l.placeholder = "Add a list...";
+				input_l.style.width = "150px";
+
+				var div_d = document.createElement("div");
+				div_d.style.display = "none";
+				div_d.id = "dropdown";
+
+				document.body.appendChild(div_b);
+				div_b.appendChild(h2);
+				div_b.appendChild(input_l);
+
+				var button2 = document.createElement("button");
+				button2.className = "btn btn-success";
+				button2.type = "submit";
+				button2.onclick = function() { that.create_list() };
+				button2.innerHTML = "Save";
+
+				var image2 = document.createElement("img");
+				image2.style.width = "30px";
+				image2.style.height = "30px";
+				image2.src = "https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png";
+				image2.style.height = "30px";
+				image2.style.width = "30px";
+				image2.onclick = function() {that.please_close() };
+
+
+				div_d.appendChild(button2);
+				div_d.appendChild(image2);
+
+				div_b.appendChild(div_d);
+
+
 			 },
 			create_board: function() {
 				 $(".overlay").toggle();
