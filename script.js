@@ -1,14 +1,26 @@
+var s;
+var Trello = {
+		settings: {
+			divs: 0,
+			cards: 0,
+			board: {},
+			board_div: $("#board"),
+	    parent_div: $("#draggable"),
+			div_drop: $("#dropdown"),
+			input: $("#input"),
+	    text_area: $("#card")
+	  },
+		init: function() {
+			s = this.settings;
+		}
+};
 
-	$(document).ready(function(){
-			localStorage.clear();
-	});
-
-	function new_board() {
-	    $(".overlay").toggle(); // show/hide the overlay
+	function toggle_board() {
+	    $(".overlay").toggle();
 	}
 
 	function create_board() {
-		$(".overlay").toggle(); // show/hide the overlay
+		$(".overlay").toggle();
 
 		var title = document.getElementById('title').value;
 		// console.log(title);
@@ -35,7 +47,6 @@
 		div.style.width = "150px";
 		div.style.height = "100px";
 		div.style.padding = "10px";
-		div.style.marginTop = "50px";
 		div.style.background = "white";
 		div.style.color = "black";
 
@@ -56,16 +67,36 @@
 		var input = document.createElement("input");
 		input.type = "text";
 		input.id = "input"+ localStorage.divs;
-	// 	$("#input"+ localStorage.divs).droppable({
-	// 	 drop: function( event, ui ) {
-	// 		 $( this )
-	// 			 console.log('dropped!');
-	// 	 }
-	//  });
 		input.class = "form-control";
 		input.placeholder = "Add a card...";
 		input.style.width = "120px";
 		div.appendChild(input);
+
+		$("#" + input.id).droppable({
+				drop: function (event, ui) {
+					console.log('this', $(this).parent()[0]);
+					// $(this).closest('div').after(ui.helper[0]);
+					console.log('dropped!', ui.helper[0]);
+					var child = ui.helper[0];
+					var parent = $(this).parent()[0];
+					// parent.style.overflow = "hidden";
+					// parent.style.width = "100%";
+					child.style.left = "0px";
+					child.style.top = "0px";
+
+					// decrease old parent's height
+					var parent_child = $(child).parent()[0];
+					var height = parent_child.offsetHeight;
+					height = height - 50;
+					parent_child.style.height = height + "px";
+
+					// increase new parent's height
+					var height = parent.offsetHeight;
+					height = height + 50;
+					parent.style.height = height + "px";
+					$(parent).append(child);
+				}
+		});
 
 		// create a dropdown div
 		var	div_d = document.createElement("div");
@@ -86,7 +117,7 @@
 		 image.src = "https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png";
 		 image.style.width = "30px";
 		 image.style.height = "30px";
-		 image.onclick = function() { please_close2(div_d.id) };
+		 image.onclick = function() { please_close2(localStorage.divs) };
 
 
 		 $("#dropdown"+localStorage.divs).toggle();
@@ -111,20 +142,11 @@
 			//console.log('card_text', card_text);
 			document.getElementById(input).value = '';
 
-			// create a list on the right
-			// var div = document.createElement("div");
-			// div.style.width = "150px";
-			// div.style.height = "100px";
-			// div.style.background = "black";
-			// div.style.marginTop = "10px";
-
-
-
 			var text_area =  document.createElement("textarea");
 			text_area.value = card_text;
 			text_area.style.width  = "120px";
 			text_area.style.marginTop = "10px";
-
+			text_area.style.zIndex = "1";
  			if (localStorage.cards) {
 					// console.log('cards', localStorage.cards);
 					localStorage.cards = Number(localStorage.cards) + 1;
@@ -134,18 +156,20 @@
 			}
 
 			text_area.id = "card" + localStorage.cards;
-			$("#"+text_area.id).draggable({
-          cancel: ""
-      });
-			// div.id = "card" + localStorage.cards;
-			// div.appendChild(text_area);
-			// console.log('text_area', text_area);
+			text_area.name =  "card" + localStorage.cards;
+
+			console.log('text_area', text_area);
 
 			var height = parent_div.offsetHeight;
-			height = height + 100;
+			height = height + 50;
 			parent_div.style.height = height + "px";
 			// div.appendChild(text_area);
 			parent_div.appendChild(text_area);
+
+
+			$("#"+text_area.id).draggable({
+        cancel: ""
+      });
 
 	}
 
@@ -158,5 +182,7 @@
 	function please_close2(id)
 	{
 		//console.log(id);
-		$('#'+id).toggle();
+		$('#dropdown'+id).toggle();
+		document.getElementById('input'+id).value = '';
+
 	}
