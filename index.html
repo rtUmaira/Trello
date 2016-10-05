@@ -13,14 +13,15 @@
   </head>
   <body>
     <script src = "script.js" > </script>
+    <!-- <script src = "script_obj.js" > </script> -->
 
     <div class="overlay">
       <div class= "form-note">
           <label style = "color:white"> Title </label>
           <input type="text" id="title" class="form-control" > </input>
           <br> <br>
-          <button class="btn btn-success" type="submit" onclick="javascript:create_board()"> Submit </button>
-          <img onclick="javascript:toggle_board()" src="https://www.pledgesports.org/wp-content/themes/pledge_v2.3/img/close.png" height="30" width="50"/>
+          <button class="btn btn-success" type="submit" onclick="javascript:Trello.create_board()"> Submit </button>
+          <img onclick="javascript:Trello.toggle_board()" src="https://www.pledgesports.org/wp-content/themes/pledge_v2.3/img/close.png" height="30" width="50"/>
 
       </div>
     </div>
@@ -40,7 +41,7 @@
          <div id="navbar" class="navbar-collapse collapse">
            <ul class="nav navbar-nav navbar-right">
 
-           <img onclick="javascript:toggle_board()" src="http://www.clipartbest.com/cliparts/aie/MGX/aieMGXbi4.png"  height="30" width="30"/>
+           <img onclick="javascript:Trello.toggle_board()" src="http://www.clipartbest.com/cliparts/aie/MGX/aieMGXbi4.png"  height="30" width="30"/>
 
            </ul>
          </div><!--/.nav-collapse -->
@@ -53,8 +54,8 @@
       <h2> </h2>
         <input type="text" id="list" name="list" class="form-control" placeholder="Add a list..." style = "width:150px"> </input>
         <div style = "display:none" id="dropdown">
-            <button class="btn btn-success" type="submit" onclick="javascript:create_list()"> Save </button>
-            <img onclick="javascript:please_close()" src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"  height="30" width="30"/>
+            <button class="btn btn-success" type="submit" onclick="javascript:Trello.create_list()"> Save </button>
+            <img onclick="javascript:Trello.please_close()" src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"  height="30" width="30"/>
         </div>
     </div>
 
