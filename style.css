@@ -7,7 +7,7 @@ body {
 }
 .overlay {
     position:fixed;
-    display:none; 
+    display:none;
 
     /* color with alpha channel */
     background-color: rgba(0, 0, 0, 0.7); /* 0.7 = 70% opacity */
@@ -26,4 +26,21 @@ body {
   margin-left: -50px;
   width: 300px;
   height: 300px;
+}
+
+.list {
+  width: 150px;
+  height: 100px;
+  padding: 10px;
+  background: white;
+  color: black;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.card {
+  width: 120px;
+  margin-top: 10px;
+  border-radius: 5px;
+  z-index: 1;
 }
