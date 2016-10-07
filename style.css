@@ -44,6 +44,7 @@ img {
 
 input {
   width: 120px;
+  border-radius: 5px;
 }
 .dropdown {
   width : 150px;

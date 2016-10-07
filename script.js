@@ -14,8 +14,12 @@
 				axis: "",
 				containment: "",
 				cursor: ""
-			}
-		}
+			},
+			on_card_drop: function() {},
+			on_create_list: function() {},
+			on_create_card: function() {}
+		};
+
 		// Create options by extending defaults with the passed in arugments
 		if (arguments[0] && typeof arguments[0] === "object") {
 			this.options = extendDefaults(defaults, arguments[0]);
@@ -25,8 +29,6 @@
 			init.call(that);
 		});
 	};
-
-	// public methods
 
 	function init() {
 		// overlay div
@@ -192,6 +194,8 @@
 		});
 		div_d.appendChild(button);
 		div_d.appendChild(image);
+
+		this.options.on_create_list();
 	}
 
 	function create_card(div, input, div_d)	{
@@ -230,7 +234,11 @@
 
 		// console.log('options111', this.options);
 		this.options.card.cancel = "";
+		this.options.card.stop = this.options.on_card_drop;
 		$("#" + text_area.id).draggable(this.options.card);
+
+		this.options.on_create_card();
+
 	}
 
 	function please_close() {
@@ -265,5 +273,14 @@ $("#begin" ).Trello({
 	},
 	card: {
 		cursor: "crosshair"
+	},
+	on_card_drop: function() {
+		console.log('card dropepd!');
+	},
+	on_create_list: function() {
+		console.log('list created!');
+	},
+	on_create_card: function() {
+		console.log('card created!');
 	}
 });
